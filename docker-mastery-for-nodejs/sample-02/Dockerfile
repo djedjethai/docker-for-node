@@ -2,11 +2,13 @@ FROM node:10-alpine
 
 EXPOSE 3000
 
+RUN apk add --update curl
+
 WORKDIR /usr/src/app
 
 COPY package.json package-lock.json* ./ 
 
-RUN apk add --update curl
+# RUN apk add --update curl // this line sould be on top
 RUN npm install && npm cache clean --force
 
 COPY . .
