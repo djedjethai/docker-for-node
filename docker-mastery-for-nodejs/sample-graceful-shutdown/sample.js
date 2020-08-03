@@ -28,7 +28,7 @@ process.on('SIGTERM', function onSigterm () {
 function shutdown() {
   // NOTE: server.close is for express based apps
   // If using hapi, use `server.stop`
-  server.close(function onServerClosed (err) {
+  server.stop(function onServerClosed (err) {
     if (err) {
       console.error(err);
       process.exitCode = 1;
