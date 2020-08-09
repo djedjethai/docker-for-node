@@ -1,6 +1,9 @@
 FROM node:10-slim as prod
 ENV NODE_ENV=production
 EXPOSE 3000
+
+# RUN apt-get install tini work only on alpine image
+
 # RUN apt-get update
 WORKDIR /node
 COPY package.json package-lock*.json ./
@@ -9,6 +12,7 @@ USER node
 RUN npm install --only=production && npm cache clean --force
 WORKDIR /node/app
 COPY . .
+# ENTRYPOINT ["/sbin/tini", "--"]
 # could do that to run a test before run the app
 # RUN npm test
 CMD ["node", "./bin/www"]
