@@ -2,9 +2,9 @@ FROM node:10-slim as prod
 ENV NODE_ENV=production
 EXPOSE 3000
 
-# RUN apt-get install tini work only on alpine image
+# RUN apk add --no-cache tini work only on alpine image
 
-# RUN apt-get update
+# RUN apt-get update do not work
 WORKDIR /node
 COPY package.json package-lock*.json ./
 RUN mkdir app && chown -R node:node .
