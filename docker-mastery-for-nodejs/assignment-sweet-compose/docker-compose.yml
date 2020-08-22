@@ -19,7 +19,7 @@ services:
     networks:
       - backend
   
-  traefix:
+  traefik:
           image: traefik:1.7-alpine
           volumes:
                 - /var/run/docker.sock:/var/run/docker.sock  
@@ -51,6 +51,7 @@ services:
   result:
     build: 
       context: result
+    command: /node_modules/.bin/nodemon ./bin/www
     depends_on:
             db:
                     condition: service_healthy  
@@ -58,6 +59,8 @@ services:
       - ./result:/var/lib/result/app:delegated
     ports:
       - '5001:80'
+    environment:
+      - NODE_ENV=development
     networks:
       - backend
     labels:
