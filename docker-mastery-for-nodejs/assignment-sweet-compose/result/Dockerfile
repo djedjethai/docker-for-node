@@ -4,6 +4,7 @@ ENV NODE_ENV=development
 
 WORKDIR /app
 
+RUN apk add --update bash
 # RUN npm install -g nodemon
 
 COPY package*.json /app/
