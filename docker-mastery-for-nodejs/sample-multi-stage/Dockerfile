@@ -4,11 +4,11 @@ EXPOSE 3000
 
 # RUN apk add --no-cache tini work only on alpine image
 
-# RUN apt-get update do not work
+RUN apt-get update && apt-get install -y vim
 WORKDIR /node
 COPY package.json package-lock*.json ./
 RUN mkdir app && chown -R node:node .
-USER node
+# USER node
 RUN npm install --only=production && npm cache clean --force
 WORKDIR /node/app
 COPY . .

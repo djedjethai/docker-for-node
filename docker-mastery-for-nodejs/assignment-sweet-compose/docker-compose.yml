@@ -54,7 +54,7 @@ services:
   result:
     build: 
       context: result
-    command: /node_modules/.bin/nodemon server.js --inspect=0.0.0.0:9229 ./result/server.js
+    command: /node/node_modules/.bin/nodemon server.js --inspect=0.0.0.0:9229 ./result/server.js
     # command: nodemon --inspect=0.0.0.0:9229 server.js 
     depends_on:
             db:
@@ -62,7 +62,7 @@ services:
     volumes:
         # - ./result:/var/lib/result/app
         # i could also simply write this
-       - ./result:/app
+       - ./result:/node/app
     ports:
       - '5001:80'
       - '9229:9229' # that s for debugging
