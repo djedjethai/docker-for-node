@@ -1,0 +1,15 @@
+version: '2.4'
+        
+services: 
+        web: 
+                init: true
+                build:
+                        context: .
+                        target: dev
+                volumes:
+                        - .:/node/app
+                ports:
+                        - "3000:3000"
+
+
+

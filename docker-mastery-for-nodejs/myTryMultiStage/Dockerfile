@@ -5,7 +5,7 @@ ENV NODE_ENV=production
 
 EXPOSE 3000
 
-RUN apt-get update && apt-get install -y vim
+# RUN apt-get update && apt-get install -y vim
 
 WORKDIR /node
 
@@ -19,7 +19,7 @@ FROM base as dev
 
 ENV NODE_ENV=development
 
-ENV PATH=/node/node_modules/.bin:$PATH
+ENV PATH /node/node_modules/.bin:$PATH
 
 WORKDIR /node
 
@@ -28,6 +28,7 @@ RUN npm install --only=development
 WORKDIR /node/app
 
 CMD ["nodemon", "./bin/www", "--inspect=0.0.0.0:9229"]
+# CMD ["/node/node_modules/nodemon/bin/nodemon.js", "./bin/www --inspect=0.0.0.0:9229"]
 
 # stage3 base as source
 # this stage start from the first one and skip the 2 last
